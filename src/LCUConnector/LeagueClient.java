@@ -9,11 +9,24 @@ import java.util.concurrent.CompletableFuture;
 
 public class LeagueClient implements ILeagueClient
 {
-    public LeagueClient()
+    /**
+     * Used for Creating the connection if you know the location of the league of legends execuatble.
+     * @param LeagueExecutablePath Path to the LeagueOfLegends executable
+     */
+    public LeagueClient(string LeagueExecutablePath)
     {
         HttpClient Client = HttpClientBuilder.create().build();
 
     }
+
+    /**
+     * Used For Creating the connection if you dont know where the League Of Legends executable is
+     */
+    public LeagueClient()
+    {
+
+    }
+
     public CompletableFuture<LeagueClient> Connect()
     {
         return CompletableFuture();
