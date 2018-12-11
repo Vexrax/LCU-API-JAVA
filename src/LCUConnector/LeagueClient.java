@@ -16,7 +16,7 @@ import java.io.FileReader;
 import java.nio.charset.Charset;
 
 
-public class LeagueClient
+public class LeagueClient implements ILeagueClient
 {
     String LeagueExecutablePath;
 
@@ -34,7 +34,7 @@ public class LeagueClient
 
     /**
      * Used for Creating the connection if you know the location of the league of legends execuatble.
-     * @param LeagueExecutablePath Path to the LeagueOfLegends executable
+     * @param leagueExecutablePath Path to the LeagueOfLegends executable
      */
     public LeagueClient(String leagueExecutablePath)
     {
