@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.BufferedReader;
@@ -110,21 +111,9 @@ public class LeagueClient implements ILeagueClient
             this.httpget =  new HttpGet(ApiUri + endPoint);
             this.httpget.setHeader("Accept", "application/json");
 
-            //todo Add a way to pass data into the LCU
-
             httpget.setHeader("Content-type", "application/json");
             httpget.setHeader("Authorization", "Basic " +  new String(this.EncodedAuth));
             HttpResponse response = this.Client.execute(httpget);
-//            HttpEntity entity = response.getEntity();
-//            Header encodingHeader = entity.getContentEncoding();
-//
-//            // you need to know the encoding to parse correctly
-//            Charset encoding = encodingHeader == null ? StandardCharsets.UTF_8 :
-//                    Charsets.toCharset(encodingHeader.getValue());
-//
-//            // use org.apache.http.util.EntityUtils to read json as string
-//            String json = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-//            return json; //todo Change this to a JSON
             return response;
         }
 
@@ -142,11 +131,13 @@ public class LeagueClient implements ILeagueClient
             this.httpost =  new HttpPost(ApiUri + endPoint);
             this.httpost.setHeader("Accept", "application/json");
 
-            //todo Add a way to pass data into the LCU
+            String json = (String)data;
+            StringEntity entity = new StringEntity(json);
+            this.httpost.setEntity(entity);
 
             httpost.setHeader("Content-type", "application/json");
             httpost.setHeader("Authorization", "Basic " +  new String(this.EncodedAuth));
-            HttpResponse response = this.Client.execute(httpget);
+            HttpResponse response = this.Client.execute(httpost);
 
             return response;
         }
@@ -165,11 +156,13 @@ public class LeagueClient implements ILeagueClient
             this.httput =  new HttpPut(ApiUri + endPoint);
             this.httput.setHeader("Accept", "application/json");
 
-            //todo Add a way to pass data into the LCU
+            String json = (String)data;
+            StringEntity entity = new StringEntity(json);
+            this.httput.setEntity(entity);
 
             httput.setHeader("Content-type", "application/json");
             httput.setHeader("Authorization", "Basic " +  new String(this.EncodedAuth));
-            HttpResponse response = this.Client.execute(httpget);
+            HttpResponse response = this.Client.execute(httput);
 
             return response;
         }
@@ -188,11 +181,9 @@ public class LeagueClient implements ILeagueClient
             this.httpdelete =  new HttpDelete(ApiUri + endPoint);
             this.httpdelete.setHeader("Accept", "application/json");
 
-            //todo Add a way to pass data into the LCU
-
             httpdelete.setHeader("Content-type", "application/json");
             httpdelete.setHeader("Authorization", "Basic " +  new String(this.EncodedAuth));
-            HttpResponse response = this.Client.execute(httpget);
+            HttpResponse response = this.Client.execute(httpdelete);
 
             return response;
         }
