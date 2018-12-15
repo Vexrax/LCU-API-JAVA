@@ -41,12 +41,12 @@ public class LeagueClient implements ILeagueClient
     {
         this.Client =  HttpClientBuilder.create().build();
         this.LeagueExecutablePath = leagueExecutablePath;
-        //ExecuteGetRequest("lol-maps/v1/maps", new Object()); //Todo: Remove Later, this is used for testing
     }
 
     /**
      * Used For Creating the connection if you dont know where the League Of Legends executable is
      */
+
     public LeagueClient()
     {
 
