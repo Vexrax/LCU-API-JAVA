@@ -20,6 +20,8 @@ public class LeagueClient implements ILeagueClient
 {
     String LeagueExecutablePath;
 
+    String DISCONNECTED_STRING = "LCU Connector Disconnected";
+
     String Token;
     String ApiUri;
     int Port;
@@ -41,13 +43,20 @@ public class LeagueClient implements ILeagueClient
         this.Client =  HttpClientBuilder.create().build();
         this.LeagueExecutablePath = leagueExecutablePath;
     }
-    
+
     public void Connect()
     {
         GetLockFileCredentials(LeagueExecutablePath);
     }
 
-
+    /**
+     *
+     * @param methodType Put, Delete, Get, Post
+     * @param endpoint League Client Endpoint
+     * @param Data Json Being executed with the request
+     * @return HttpResponse, This can be converted to a JSON
+     * @throws RequestTypeNotFoundException
+     */
     public HttpResponse MakeApiRequest(HttpMethod methodType, String endpoint, Object Data) throws RequestTypeNotFoundException
     {
         switch(methodType)
@@ -67,7 +76,13 @@ public class LeagueClient implements ILeagueClient
 
     public void Disconnect()
     {
-        //todo
+        this.Client = null;
+        this.EncodedAuth = null;
+        this.httpost = null;
+        this.httpget = null;
+        this.httput = null;
+        this.httpdelete = null;
+        System.out.println(DISCONNECTED_STRING);
     }
 
     private void GetLockFileCredentials(String PathToLockFile)
