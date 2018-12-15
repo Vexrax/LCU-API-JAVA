@@ -1,6 +1,5 @@
 package LCUConnector;
 
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -42,16 +41,7 @@ public class LeagueClient implements ILeagueClient
         this.Client =  HttpClientBuilder.create().build();
         this.LeagueExecutablePath = leagueExecutablePath;
     }
-
-    /**
-     * Used For Creating the connection if you dont know where the League Of Legends executable is
-     */
-
-    public LeagueClient()
-    {
-
-    }
-
+    
     public void Connect()
     {
         GetLockFileCredentials(LeagueExecutablePath);
@@ -194,6 +184,4 @@ public class LeagueClient implements ILeagueClient
         }
         return null;
     }
-
-
 }
