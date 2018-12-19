@@ -1,6 +1,5 @@
 package LCUConnector;
 
-import jdk.jfr.events.SocketWriteEvent;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,7 +12,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.*;
-import java.net.Socket;
 import java.nio.charset.Charset;
 
 
